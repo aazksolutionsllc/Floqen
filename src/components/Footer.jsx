@@ -7,14 +7,14 @@ function Footer() {
       <div className="container">
         <div className="footer-content">
           <div className="footer-brand">
-            <span className="footer-logo">FLOQEN</span>
+            <span className="footer-logo">Floqen</span>
             <p className="footer-tagline">Where APIs are born secure</p>
           </div>
         </div>
         
         <div className="footer-bottom">
           <p className="copyright">
-            © {new Date().getFullYear()} Floqen. All rights reserved.
+            © 2025 AAZKSOLUTIONS LLC
           </p>
         </div>
       </div>
