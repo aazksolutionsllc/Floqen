@@ -6,18 +6,25 @@ import Lifecycle from './components/Lifecycle'
 import Integrations from './components/Integrations'
 import CTASection from './components/CTASection'
 import Footer from './components/Footer'
+import EarlyAccessModal from './components/EarlyAccessModal'
 import './App.css'
 
 function App() {
+  const [eaOpen, setEaOpen] = React.useState(false)
+
+  function openEA() { setEaOpen(true) }
+  function closeEA() { setEaOpen(false) }
+
   return (
     <div className="App">
-      <Nav />
-      <Hero />
+      <Nav onOpenEarlyAccess={openEA} />
+      <Hero onOpenEarlyAccess={openEA} />
       <ProblemSolution />
       <Lifecycle />
       <Integrations />
-      <CTASection />
+      <CTASection onOpenEarlyAccess={openEA} />
       <Footer />
+      <EarlyAccessModal open={eaOpen} onClose={closeEA} />
     </div>
   )
 }

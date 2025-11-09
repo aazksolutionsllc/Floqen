@@ -1,7 +1,7 @@
 import React from 'react'
 import './Hero.css'
 
-function Hero() {
+function Hero({ onOpenEarlyAccess }) {
   return (
     <section className="hero" id="hero">
       <div className="hero-background">
@@ -16,7 +16,7 @@ function Hero() {
             <p className="hero-subtext tagline">Design → Publish Securely → Test → Subscribe → Consume</p>
             <p className="hero-subtext">Floqen unifies the entire API lifecycle into a single AI-driven platform.</p>
             <div className="hero-ctas">
-              <button className="cta-primary">Get Early Access</button>
+              <button className="cta-primary" onClick={() => onOpenEarlyAccess?.()}>Get Early Access</button>
             </div>
           </div>
           <div className="hero-visual">

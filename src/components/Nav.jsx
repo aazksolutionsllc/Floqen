@@ -1,7 +1,7 @@
 import React from 'react'
 import './Nav.css'
 
-function Nav() {
+function Nav({ onOpenEarlyAccess }) {
   const [menuOpen, setMenuOpen] = React.useState(false)
 
   React.useEffect(() => {
@@ -44,7 +44,7 @@ function Nav() {
         </div>
         <div className="nav-right">
           <a href="#about" className="nav-link">About</a>
-          <button className="nav-button">Get Early Access</button>
+          <button className="nav-button" onClick={() => onOpenEarlyAccess?.()}>Get Early Access</button>
         </div>
         <button
           className="nav-burger"

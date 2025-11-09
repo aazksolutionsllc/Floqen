@@ -38,7 +38,7 @@
 /* Ensure lifecycle title stays single-line and scales on small screens */
 @media (max-width: 768px) {
   .lifecycle .section-title {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     white-space: nowrap;
     line-height: 1.15;
     letter-spacing: -0.012em;
@@ -48,15 +48,15 @@
 
 @media (max-width: 480px) {
   .lifecycle .section-title {
-    font-size: clamp(1.15rem, 5.2vw, 1.5rem);
-    letter-spacing: -0.016em;
-    word-spacing: -0.06em;
+    font-size: clamp(1.4rem, 5.8vw, 1.8rem);
+    letter-spacing: -0.02em;
+    word-spacing: -0.08em;
   }
 }
 
 @media (max-width: 420px) {
   .lifecycle .section-title {
-    font-size: 1.0rem;
+    font-size: 1.2rem;
   }
 }
 

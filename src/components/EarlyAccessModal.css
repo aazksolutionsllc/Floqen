@@ -1,0 +1,107 @@
+.ea-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.ea-backdrop.open { display: flex; }
+
+.ea-modal {
+  width: 100%;
+  max-width: 720px;
+  background: rgba(10, 34, 57, 0.96);
+  border: 1px solid rgba(56, 176, 192, 0.25);
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  padding: 1.25rem;
+}
+
+.ea-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .75rem;
+}
+.ea-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+.ea-close {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(56,176,192,.35);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.ea-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.ea-row-full { grid-column: 1 / -1; }
+
+.ea-label {
+  display: block;
+  font-size: .9rem;
+  margin-bottom: .35rem;
+  color: var(--soft-gray);
+}
+.ea-required { color: #ff6b6b; margin-left: 2px; }
+
+.ea-input, .ea-select {
+  width: 100%;
+  padding: .75rem .9rem;
+  border-radius: 10px;
+  border: 1px solid rgba(56,176,192,0.25);
+  background: rgba(255,255,255,0.05);
+  color: var(--white);
+  outline: none;
+}
+.ea-input::placeholder { color: rgba(255,255,255,.55); }
+
+.ea-hint {
+  font-size: .8rem;
+  color: var(--soft-gray);
+  margin-top: .25rem;
+}
+.ea-error {
+  font-size: .8rem;
+  color: #ff6b6b;
+  margin-top: .25rem;
+}
+
+.ea-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: .75rem;
+  margin-top: 1rem;
+}
+.ea-btn {
+  padding: .8rem 1.2rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.ea-btn.primary {
+  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-teal));
+  color: var(--white);
+  border: none;
+}
+.ea-btn.ghost {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,.3);
+}
+
+@media (max-width: 640px) {
+  .ea-body { grid-template-columns: 1fr; }
+}
+
+
