@@ -7,12 +7,12 @@ function EarlyAccessModal({ open, onClose }) {
     email: '',
     fullName: '',
     company: '',
-    password: '',
     phone: '',
   })
   const [errors, setErrors] = React.useState({})
   const [submitting, setSubmitting] = React.useState(false)
   const [submitMessage, setSubmitMessage] = React.useState('')
+  const [success, setSuccess] = React.useState(false)
   const backdropRef = React.useRef(null)
 
   React.useEffect(() => {
@@ -32,7 +32,6 @@ function EarlyAccessModal({ open, onClose }) {
     if (!form.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email)) next.email = 'Enter a valid business email'
     if (!form.fullName) next.fullName = 'Full name is required'
     if (!form.company) next.company = 'Company is required'
-    if (!form.password || !/(?=.*[a-z])(?=.*\d).{8,}/.test(form.password)) next.password = 'Min 8 chars, 1 number, 1 lowercase'
     setErrors(next)
     return Object.keys(next).length === 0
   }
@@ -68,11 +67,9 @@ function EarlyAccessModal({ open, onClose }) {
         body: JSON.stringify(payload),
       })
       if (!res.ok) throw new Error('Request failed')
-      setSubmitMessage('Thanks! We\'ll be in touch shortly.')
-      setTimeout(() => {
-        setSubmitting(false)
-        onClose?.()
-      }, 900)
+      setSubmitting(false)
+      setSuccess(true)
+      setSubmitMessage('Thank you — the Floqen team will review your request and get back to you shortly.')
     } catch (err) {
       setSubmitting(false)
       setSubmitMessage('Something went wrong. Please try again.')
@@ -100,20 +97,21 @@ function EarlyAccessModal({ open, onClose }) {
             <label className="ea-label">
               Select a Region
             </label>
-            <select
-              className="ea-select"
-              value={form.region}
-              onChange={(e) => updateField('region', e.target.value)}
-            >
-              <option value="US1">United States (US1-East)</option>
-              <option value="US3">United States (US3-West)</option>
-              <option value="US5">United States (US5-Central)</option>
-              <option value="EU1">Europe (EU1)</option>
-              <option value="AP1">Japan (AP1)</option>
-              <option value="AP2">Australia (AP2)</option>
-              <option value="US1-FED">United States (US1-FED) - FedRAMP Moderate Authorized</option>
-            </select>
-            <div className="ea-hint">Important: This can’t be changed later</div>
+            <div className="ea-select-wrap">
+              <select
+                className="ea-select"
+                value={form.region}
+                onChange={(e) => updateField('region', e.target.value)}
+              >
+                <option value="US1">United States (US1-East)</option>
+                <option value="US3">United States (US3-West)</option>
+                <option value="US5">United States (US5-Central)</option>
+                <option value="EU1">Europe (EU1)</option>
+                <option value="AP1">Japan (AP1)</option>
+                <option value="AP2">Australia (AP2)</option>
+                <option value="US1-FED">United States (US1-FED) - FedRAMP Moderate Authorized</option>
+              </select>
+            </div>
           </div>
 
           <div className="ea-row-full">
@@ -153,19 +151,6 @@ function EarlyAccessModal({ open, onClose }) {
           </div>
 
           <div>
-            <label className="ea-label">Password <span className="ea-required">*</span></label>
-            <input
-              className="ea-input"
-              type="password"
-              placeholder="••••••••"
-              value={form.password}
-              onChange={(e) => updateField('password', e.target.value)}
-            />
-            <div className="ea-hint">Use at least 8 characters containing at least 1 number and 1 lowercase letter</div>
-            {errors.password && <div className="ea-error">{errors.password}</div>}
-          </div>
-
-          <div>
             <label className="ea-label">Phone</label>
             <input
               className="ea-input"
@@ -177,10 +162,12 @@ function EarlyAccessModal({ open, onClose }) {
           </div>
 
           <div className="ea-actions ea-row-full">
-            <button type="button" className="ea-btn ghost" onClick={onClose} disabled={submitting}>Cancel</button>
-            <button type="submit" className="ea-btn primary" disabled={submitting}>{submitting ? 'Sending…' : 'Submit'}</button>
+            <button type="button" className="ea-btn ghost" onClick={onClose} disabled={submitting}>{success ? 'Close' : 'Cancel'}</button>
+            {!success && (
+              <button type="submit" className="ea-btn primary" disabled={submitting}>{submitting ? 'Sending…' : 'Submit'}</button>
+            )}
           </div>
-          {submitMessage && <div className="ea-row-full ea-hint" role="status">{submitMessage}</div>}
+          {submitMessage && <div className={`ea-row-full ${success ? 'ea-success' : 'ea-hint'}`} role="status">{submitMessage}</div>}
         </form>
       </div>
     </div>
