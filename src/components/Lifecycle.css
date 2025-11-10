@@ -356,7 +356,8 @@
 /* Unified card sizing and alignment */
 .lifecycle-item { align-items: stretch; }
 .lifecycle-content {
-  height: var(--lifecycle-card-height, 300px);
+  min-height: var(--lifecycle-card-height, 300px);
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -367,7 +368,7 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 6;
 }
 
 @media (max-width: 968px) {
@@ -379,8 +380,8 @@
   /* Remove side margins and keep all cards same width */
   .lifecycle-item-left .lifecycle-content,
   .lifecycle-item-right .lifecycle-content { margin: 0; }
-  .lifecycle-content { --lifecycle-card-height: 320px; }
-  .item-description { -webkit-line-clamp: 5; }
+  .lifecycle-content { --lifecycle-card-height: 320px; min-height: auto; }
+  .item-description { -webkit-line-clamp: 8; }
   /* Hide icons on mobile per request */
   .timeline-icon-wrapper { display: none; }
   .row-beam { display: none; }
@@ -396,6 +397,14 @@
     /* Smooth snap scrolling feel on mobile */
     scroll-snap-type: y proximity;
     max-width: 100%;
+  }
+  
+  /* Remove all animations on mobile - cards appear instantly */
+  .lifecycle-item.revealed.lifecycle-item-left .lifecycle-content,
+  .lifecycle-item.revealed.lifecycle-item-right .lifecycle-content {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
   
   .lifecycle-item {
@@ -418,7 +427,7 @@
       inset 0 0 0 1px rgba(255,255,255,0.02);
     width: 100%;
     max-width: 680px;
-    min-height: 340px; /* uniform height across cards on mobile */
+    min-height: 380px; /* uniform height across cards on mobile, allows longer text */
   }
   /* Left accent glow bar */
   .lifecycle-content::before {
@@ -468,6 +477,7 @@
   
   .item-description {
     font-size: 0.9rem;
+    -webkit-line-clamp: 8;
   }
   
   .timeline-icon {

@@ -10,7 +10,8 @@ function Integrations() {
     { name: 'Microsoft Azure', imageSrc: microsoftAzureImg },
     { name: 'Okta', imageSrc: oktaImg },
     { name: 'Ping Identity', imageSrc: pingIdentityImg },
-    { name: 'AWS Cognito', imageSrc: awsCognitoImg }
+    { name: 'AWS Cognito', imageSrc: awsCognitoImg },
+    { name: 'Google' }
   ]
 
   const marqueeItems = [
