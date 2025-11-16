@@ -117,8 +117,8 @@
 .mobile-menu {
   position: fixed;
   inset: 0;
-  background: rgba(10, 34, 57, 0.96);
-  backdrop-filter: blur(6px);
+  background: var(--bg-deep-navy);
+  backdrop-filter: blur(10px);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8%);
@@ -136,12 +136,15 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem 1rem 2rem;
+  background: var(--bg-deep-navy);
+
 }
 .mobile-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .5rem 0 1rem;
+
+    padding: .5rem 0 1rem;
 }
 .nav-close {
   background: transparent;
